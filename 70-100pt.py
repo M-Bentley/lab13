@@ -59,10 +59,18 @@ class MyApp:
 	def animate(self):
 	    global drawpad
 	    global player
+	    ex1,ex2,ey1,ey2 = drawpad.coords(enemy)
+	    rx1,rx2,ry1,ry2 = drawpad.coords(enemy2)
+	    qx1,qx2,qy1,qy2 = drawpad.coords(enemy3)
 	    # Remember to include your "enemies" with "global"
-	    
+	    global enemy
 	    # Uncomment this when you're ready to test out your animation!
-	    drawpad.after(10,self.animate)
+	    if ex2 > 800:
+                direction = - 10
+            elif ex1 < 0:
+                direction = 10
+                drawpad.move(enemy, direction, 0)
+            drawpad.after(5,self.animate)
 		
 	def upClicked(self, event):   
 	   global oval
@@ -82,6 +90,7 @@ class MyApp:
 	def rightClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player, 20, 0)   
+	   drawpad.move(player, 20, 0)
+	      
 app = MyApp(root)
 root.mainloop()
